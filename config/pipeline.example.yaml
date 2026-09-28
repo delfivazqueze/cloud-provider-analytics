@@ -1,0 +1,34 @@
+# Configuración externalizada del pipeline. Copiar a pipeline.yaml y ajustar.
+# NUNCA poner credenciales acá: el token de AstraDB va en variables de entorno o en los secretos de Colab.
+
+paths:
+  base: /content                  # en Colab; con Drive: /content/drive/MyDrive/cloud-provider-analytics
+  landing: ${base}/datalake/landing
+  bronze: ${base}/datalake/bronze
+  silver: ${base}/datalake/silver
+  gold: ${base}/datalake/gold
+  quarantine: ${base}/datalake/quarantine
+  checkpoints: ${base}/datalake/_checkpoints
+  meta: ${base}/datalake/_meta
+
+spark:
+  app_name: cloud-provider-analytics
+  shuffle_partitions: 8           # dataset chico (D11)
+  partition_overwrite_mode: dynamic
+  timezone: UTC
+
+streaming:
+  max_files_per_trigger: 10
+  trigger_interval: "5 minutes"
+  watermark: "2 days"             # decisión abierta: se calibra en la 2ª entrega
+
+quality:
+  cost_tolerance_usd: -0.01
+  anomaly_method: mad_by_service_metric
+  anomaly_threshold: 3.5
+
+cassandra:
+  keyspace: cloud_analytics
+  consistency: LOCAL_QUORUM
+  secure_bundle_path: ${ASTRA_SECURE_BUNDLE_PATH}   # variable de entorno
+  token: ${ASTRA_DB_APPLICATION_TOKEN}              # variable de entorno

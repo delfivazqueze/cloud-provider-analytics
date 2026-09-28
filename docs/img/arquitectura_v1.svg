@@ -1,0 +1,236 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 860" width="1500" height="860" font-family="Helvetica, Arial, sans-serif" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYToxYTQwNzJjMC04N2MwLTRmNDYtYTIzYy01ODcxZmI0ZjEwZGUAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaDCL/0SfWdWChDNwQJ/x7FoAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDoyMGE1Y2U0Yi1iOTU1LTQxYmItYmIxNy0wYjNhMWQxMGQ1OTZscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoQaf2m5jaBZ1cUVIBI2MtvAAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggXVYFAKNCwbl7Og3hONze8iVpkEuGc3muOEQDVLtNarWkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaOCWHFidD/+GbTcOSSoM0hQAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCCHvx1/2xYHV6DF+DAOqvRZeJ18nPvpirz0l+pi/dMWd2RuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBjDZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjFhNDA3MmMwLTg3YzAtNGY0Ni1hMjNjLTU4NzFmYjRmMTBkZS9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmY2NWM5YmYwLWE2MGYtNGZjMi1iYzRiLTc0M2FjMzA0MzIwMnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCBdVgUAo0LBuXs6DeE43N7yJWmQS4Zzea44RANUu01qtaJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggZyMVcdIVXdqrQycI1FACUHlm9DlZwRQMGejnZmNxaU2iY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggmeYqB96I1vcpJDQicvf8Csls+3R1LVnuMcHoGinGTDd0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQKydDwqkuQOHPdWW907M0Klmn1FkyrltHjS8REBVjZcFztlhIdtHua4qaHAO5FE9ZrjT4jdrfQmAKC+iAYjM9ig=</c2pa:manifest></metadata>
+  <defs>
+    <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ea580c"/></marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#64748b"/></marker>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/></marker>
+  </defs>
+  <rect width="1500" height="860" fill="#ffffff"/>
+
+  <!-- Título -->
+  <text x="30" y="40" font-size="22" font-weight="700" fill="#0f172a">Cloud Provider Analytics · Arquitectura lógica v1 (patrón Lambda)</text>
+  <text x="30" y="64" font-size="13" fill="#475569">Grupo: Peces · Solé · Edalian · Vázquez Escati — v1.0 · 05/10/2026</text>
+  <!-- Leyenda -->
+  <line x1="1090" y1="36" x2="1130" y2="36" stroke="#2563eb" stroke-width="3" marker-end="url(#ab)"/>
+  <text x="1138" y="41" font-size="13" fill="#0f172a">Capa batch (maestros, facturación, recálculo)</text>
+  <line x1="1090" y1="60" x2="1130" y2="60" stroke="#ea580c" stroke-width="3" marker-end="url(#ao)"/>
+  <text x="1138" y="65" font-size="13" fill="#0f172a">Capa speed (streaming de eventos)</text>
+
+  <!-- Encabezados de columnas -->
+  <g font-size="13" font-weight="700" fill="#334155" letter-spacing="0.5">
+    <text x="140" y="108" text-anchor="middle">1 · FUENTES</text>
+    <text x="675" y="108" text-anchor="middle">2 · INGESTA + 3 · DATA LAKE + 4 · PROCESAMIENTO</text>
+    <text x="1195" y="108" text-anchor="middle">5 · SERVING</text>
+    <text x="1405" y="108" text-anchor="middle">6 · CONSUMO</text>
+  </g>
+
+  <!-- FUENTES -->
+  <rect x="30" y="125" width="220" height="285" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="45" y="150" font-size="14" font-weight="700" fill="#1e3a8a">Batch · CSV</text>
+  <g font-size="12" fill="#1e293b">
+    <text x="45" y="175">customers_orgs (80)</text>
+    <text x="45" y="197">users (800)</text>
+    <text x="45" y="219">resources (400)</text>
+    <text x="45" y="241">support_tickets (1.000)</text>
+    <text x="45" y="263">marketing_touches (1.500)</text>
+    <text x="45" y="285">nps_surveys (92)</text>
+    <text x="45" y="307">billing_monthly (240)</text>
+  </g>
+  <text x="45" y="338" font-size="11" fill="#475569">Frecuencia: diaria (CRM)</text>
+  <text x="45" y="354" font-size="11" fill="#475569">y mensual (facturación)</text>
+  <text x="45" y="386" font-size="11" fill="#475569">CRM · Billing · Soporte · Mkt</text>
+
+  <rect x="30" y="435" width="220" height="150" rx="10" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="45" y="460" font-size="14" font-weight="700" fill="#9a3412">Streaming · JSONL</text>
+  <g font-size="12" fill="#1e293b">
+    <text x="45" y="485">usage_events_stream</text>
+    <text x="45" y="507">120 archivos · 43.200 eventos</text>
+    <text x="45" y="529">schema v1 → v2 (18/07)</text>
+    <text x="45" y="551">+ carbon_kg, genai_tokens</text>
+  </g>
+  <text x="45" y="573" font-size="11" fill="#475569">Llegada continua (micro-lotes)</text>
+
+  <!-- DATA LAKE contenedor -->
+  <rect x="285" y="120" width="780" height="520" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <rect x="300" y="132" width="750" height="30" rx="6" fill="#e2e8f0"/>
+  <text x="675" y="152" font-size="12.5" text-anchor="middle" fill="#0f172a"><tspan font-weight="700">Apache Spark 3.5 (PySpark) en Google Colab</tspan> — batch y Structured Streaming con la misma API de DataFrames · Parquet (snappy)</text>
+
+  <!-- Zonas -->
+  <g>
+    <rect x="300" y="178" width="150" height="385" rx="8" fill="#ffffff" stroke="#64748b" stroke-width="1.5"/>
+    <text x="375" y="202" font-size="15" font-weight="700" text-anchor="middle" fill="#0f172a">Landing</text>
+    <g font-size="11.5" fill="#334155" text-anchor="middle">
+      <text x="375" y="224">raw inmutable</text>
+      <text x="375" y="242">archivos originales</text>
+      <text x="375" y="260">solo lectura</text>
+      <text x="375" y="545">retención 90 días</text>
+    </g>
+
+    <rect x="485" y="178" width="150" height="385" rx="8" fill="#ffffff" stroke="#b45309" stroke-width="1.5"/>
+    <text x="560" y="202" font-size="15" font-weight="700" text-anchor="middle" fill="#78350f">Bronze</text>
+    <g font-size="11.5" fill="#334155" text-anchor="middle">
+      <text x="560" y="224">mismo grano</text>
+      <text x="560" y="242">esquema explícito</text>
+      <text x="560" y="260">+ ingest_ts, source_file</text>
+      <text x="560" y="278">dedupe clave natural</text>
+      <text x="560" y="527">part.: event_date / mes</text>
+      <text x="560" y="545">retención 1 año</text>
+    </g>
+
+    <rect x="670" y="178" width="170" height="385" rx="8" fill="#ffffff" stroke="#6b7280" stroke-width="1.5"/>
+    <text x="755" y="202" font-size="15" font-weight="700" text-anchor="middle" fill="#374151">Silver</text>
+    <g font-size="11.5" fill="#334155" text-anchor="middle">
+      <text x="755" y="224">conformado</text>
+      <text x="755" y="242">v1/v2 unificados</text>
+      <text x="755" y="260">tipos, fechas, USD</text>
+      <text x="755" y="278">joins dim_org, resources</text>
+      <text x="755" y="296">flags de anomalía</text>
+      <text x="755" y="527">part.: event_date</text>
+      <text x="755" y="545">retención 2 años</text>
+    </g>
+
+    <rect x="875" y="178" width="175" height="385" rx="8" fill="#ffffff" stroke="#a16207" stroke-width="1.5"/>
+    <text x="962" y="202" font-size="15" font-weight="700" text-anchor="middle" fill="#713f12">Gold</text>
+    <g font-size="11" fill="#334155" text-anchor="middle">
+      <text x="962" y="224">marts por dominio</text>
+      <text x="962" y="244" font-family="Menlo, monospace" font-size="10">org_daily_usage_by_service</text>
+      <text x="962" y="262" font-family="Menlo, monospace" font-size="10">revenue_by_org_month</text>
+      <text x="962" y="280" font-family="Menlo, monospace" font-size="10">cost_anomaly_mart</text>
+      <text x="962" y="298" font-family="Menlo, monospace" font-size="10">tickets_by_org_date</text>
+      <text x="962" y="316" font-family="Menlo, monospace" font-size="10">genai_tokens_by_org_date</text>
+      <text x="962" y="527">part.: fecha / mes</text>
+      <text x="962" y="545">retención 3 años</text>
+    </g>
+  </g>
+
+  <!-- Flechas batch (fila superior) -->
+  <g stroke="#2563eb" stroke-width="2.5" fill="none">
+    <path d="M250,300 L298,300" marker-end="url(#ab)"/>
+    <path d="M450,345 L483,345" marker-end="url(#ab)"/>
+    <path d="M635,345 L668,345" marker-end="url(#ab)"/>
+    <path d="M840,345 L873,345" marker-end="url(#ab)"/>
+  </g>
+  <g font-size="10.5" fill="#1d4ed8" text-anchor="middle">
+    <text x="560" y="330">spark.read (CSV)</text>
+    <text x="560" y="368">diario / mensual</text>
+    <text x="755" y="330">batch diario</text>
+    <text x="755" y="368">+ recálculo histórico</text>
+    <text x="962" y="368">recompute nocturno</text>
+  </g>
+
+  <!-- Flechas streaming (fila inferior) -->
+  <g stroke="#ea580c" stroke-width="2.5" fill="none">
+    <path d="M250,480 L298,480" marker-end="url(#ao)"/>
+    <path d="M450,440 L483,440" marker-end="url(#ao)"/>
+    <path d="M635,440 L668,440" marker-end="url(#ao)"/>
+    <path d="M840,440 L873,440" marker-end="url(#ao)"/>
+  </g>
+  <g font-size="10.5" fill="#c2410c" text-anchor="middle">
+    <text x="560" y="425">readStream (JSON)</text>
+    <text x="560" y="463">watermark + dedupe</text>
+    <text x="560" y="479">event_id · checkpoint</text>
+    <text x="755" y="463">foreachBatch</text>
+    <text x="755" y="479">micro-lote 5 min</text>
+    <text x="962" y="463">upsert incremental</text>
+  </g>
+
+  <!-- Quarantine -->
+  <rect x="485" y="585" width="355" height="42" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+  <text x="662" y="604" font-size="13" font-weight="700" text-anchor="middle" fill="#991b1b">Quarantine (Parquet)</text>
+  <text x="662" y="620" font-size="11" text-anchor="middle" fill="#7f1d1d">registros inválidos + rule_id + motivo · retención 30 días</text>
+  <path d="M560,563 L560,583" stroke="#b91c1c" stroke-width="2" marker-end="url(#ar)"/>
+  <path d="M755,563 L755,583" stroke="#b91c1c" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="875" y="585" width="175" height="42" rx="8" fill="#f1f5f9" stroke="#64748b" stroke-width="1.2"/>
+  <text x="962" y="603" font-size="11.5" text-anchor="middle" fill="#334155">_checkpoints · _meta</text>
+  <text x="962" y="619" font-size="10.5" text-anchor="middle" fill="#475569">offsets · run_log · catálogo</text>
+
+  <!-- SERVING -->
+  <rect x="1100" y="178" width="190" height="385" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-width="1.5"/>
+  <text x="1195" y="204" font-size="15" font-weight="700" text-anchor="middle" fill="#14532d">Cassandra / AstraDB</text>
+  <text x="1195" y="224" font-size="11.5" text-anchor="middle" fill="#166534">keyspace cloud_analytics</text>
+  <text x="1195" y="241" font-size="11" text-anchor="middle" fill="#166534">modelado query-first</text>
+  <g font-size="10" font-family="Menlo, monospace" fill="#1e293b">
+    <text x="1112" y="272">Q1 usage_by_org_date</text>
+    <text x="1112" y="292">Q2 top_services_14d</text>
+    <text x="1112" y="312">Q3 support_daily_sla</text>
+    <text x="1112" y="332">Q4 revenue_by_org_month</text>
+    <text x="1112" y="352">Q5 genai_by_org_date</text>
+  </g>
+  <g font-size="11" fill="#166534" text-anchor="middle">
+    <text x="1195" y="505">RF=3 · LOCAL_QUORUM</text>
+    <text x="1195" y="523">upsert por PK</text>
+    <text x="1195" y="541">(idempotente)</text>
+  </g>
+  <path d="M1050,345 L1098,345" stroke="#2563eb" stroke-width="2.5" marker-end="url(#ab)"/>
+  <path d="M1050,440 L1098,440" stroke="#ea580c" stroke-width="2.5" marker-end="url(#ao)"/>
+  <text x="1195" y="400" font-size="11" fill="#334155" text-anchor="middle">carga desde Spark:</text>
+  <text x="1195" y="416" font-size="11" fill="#334155" text-anchor="middle">Spark Cassandra Connector</text>
+
+  <!-- CONSUMO -->
+  <g>
+    <rect x="1330" y="178" width="150" height="105" rx="10" fill="#ffffff" stroke="#475569" stroke-width="1.3"/>
+    <text x="1405" y="202" font-size="14" font-weight="700" text-anchor="middle" fill="#0f172a">FinOps</text>
+    <text x="1405" y="222" font-size="11" text-anchor="middle" fill="#334155">costos, revenue,</text>
+    <text x="1405" y="238" font-size="11" text-anchor="middle" fill="#334155">anomalías · Q1 Q2 Q4</text>
+    <rect x="1330" y="298" width="150" height="105" rx="10" fill="#ffffff" stroke="#475569" stroke-width="1.3"/>
+    <text x="1405" y="322" font-size="14" font-weight="700" text-anchor="middle" fill="#0f172a">Soporte</text>
+    <text x="1405" y="342" font-size="11" text-anchor="middle" fill="#334155">tickets, SLA, CSAT</text>
+    <text x="1405" y="358" font-size="11" text-anchor="middle" fill="#334155">Q3</text>
+    <rect x="1330" y="418" width="150" height="105" rx="10" fill="#ffffff" stroke="#475569" stroke-width="1.3"/>
+    <text x="1405" y="442" font-size="14" font-weight="700" text-anchor="middle" fill="#0f172a">Producto</text>
+    <text x="1405" y="462" font-size="11" text-anchor="middle" fill="#334155">uso, GenAI, carbono</text>
+    <text x="1405" y="478" font-size="11" text-anchor="middle" fill="#334155">Q5</text>
+    <text x="1405" y="548" font-size="11" text-anchor="middle" fill="#475569">CQL · notebook ·</text>
+    <text x="1405" y="564" font-size="11" text-anchor="middle" fill="#475569">herramienta de BI</text>
+  </g>
+  <path d="M1290,300 L1328,250" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#ag)"/>
+  <path d="M1290,360 L1328,352" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#ag)"/>
+  <path d="M1290,420 L1328,468" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#ag)"/>
+
+  <!-- CAPACIDADES TRANSVERSALES -->
+  <rect x="30" y="665" width="1450" height="170" rx="12" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="48" y="692" font-size="14" font-weight="700" fill="#4c1d95">CAPACIDADES TRANSVERSALES (gobierno del dato desde el diseño)</text>
+  <g font-size="12">
+    <rect x="48" y="706" width="228" height="112" rx="8" fill="#ffffff" stroke="#c4b5fd"/>
+    <text x="60" y="728" font-weight="700" fill="#4c1d95">Calidad</text>
+    <text x="60" y="748" fill="#334155">reglas verificables por zona</text>
+    <text x="60" y="766" fill="#334155">quarantine con motivo</text>
+    <text x="60" y="784" fill="#334155">conciliación de conteos</text>
+    <text x="60" y="802" fill="#334155">(entrada = salida + quarantine)</text>
+
+    <rect x="286" y="706" width="228" height="112" rx="8" fill="#ffffff" stroke="#c4b5fd"/>
+    <text x="298" y="728" font-weight="700" fill="#4c1d95">Metadatos y catálogo</text>
+    <text x="298" y="748" fill="#334155">esquemas versionados en código</text>
+    <text x="298" y="766" fill="#334155">diccionario de datos (docs/)</text>
+    <text x="298" y="784" fill="#334155">naming snake_case + sufijos</text>
+    <text x="298" y="802" fill="#334155">de unidad (_usd, _kg, _ts)</text>
+
+    <rect x="524" y="706" width="228" height="112" rx="8" fill="#ffffff" stroke="#c4b5fd"/>
+    <text x="536" y="728" font-weight="700" fill="#4c1d95">Linaje</text>
+    <text x="536" y="748" fill="#334155">source_file + ingest_ts</text>
+    <text x="536" y="766" fill="#334155">run_id por ejecución</text>
+    <text x="536" y="784" fill="#334155">value_raw conservado</text>
+    <text x="536" y="802" fill="#334155">mapa fuente → mart → tabla</text>
+
+    <rect x="762" y="706" width="228" height="112" rx="8" fill="#ffffff" stroke="#c4b5fd"/>
+    <text x="774" y="728" font-weight="700" fill="#4c1d95">Seguridad</text>
+    <text x="774" y="748" fill="#334155">token AstraDB en secretos</text>
+    <text x="774" y="766" fill="#334155">(nunca en el repo)</text>
+    <text x="774" y="784" fill="#334155">roles mínimos por zona</text>
+    <text x="774" y="802" fill="#334155">emails de users = dato personal</text>
+
+    <rect x="1000" y="706" width="228" height="112" rx="8" fill="#ffffff" stroke="#c4b5fd"/>
+    <text x="1012" y="728" font-weight="700" fill="#4c1d95">Observabilidad</text>
+    <text x="1012" y="748" fill="#334155">run_log: filas in/out/quar.</text>
+    <text x="1012" y="766" fill="#334155">duración, lag del stream</text>
+    <text x="1012" y="784" fill="#334155">progreso de micro-lotes</text>
+    <text x="1012" y="802" fill="#334155">alertas por umbral</text>
+
+    <rect x="1238" y="706" width="228" height="112" rx="8" fill="#ffffff" stroke="#c4b5fd"/>
+    <text x="1250" y="728" font-weight="700" fill="#4c1d95">Orquestación</text>
+    <text x="1250" y="748" fill="#334155">MVP: notebooks en orden</text>
+    <text x="1250" y="766" fill="#334155">con config externa</text>
+    <text x="1250" y="784" fill="#334155">producción: Airflow +</text>
+    <text x="1250" y="802" fill="#334155">object storage (S3/GCS)</text>
+  </g>
+</svg>
