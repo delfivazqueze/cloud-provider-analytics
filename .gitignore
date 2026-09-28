@@ -1,0 +1,7 @@
+datalake/
+*.zip
+config/pipeline.yaml
+.env
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
