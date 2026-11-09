@@ -1,8 +1,8 @@
-# Configuración externalizada del pipeline. Copiar a pipeline.yaml y ajustar.
-# NUNCA poner credenciales acá: el token de AstraDB va en variables de entorno o en los secretos de Colab.
+# Configuración externalizada del pipeline. Copiar a pipeline.yaml para cambiar valores.
+# NUNCA poner credenciales acá: el token de AstraDB va en los secretos de Colab o en variables de entorno.
 
 paths:
-  base: /content                  # en Colab; con Drive: /content/drive/MyDrive/cloud-provider-analytics
+  base: /content                  # en Colab. Con Drive: /content/drive/MyDrive/cloud-provider-analytics
   landing: ${base}/datalake/landing
   bronze: ${base}/datalake/bronze
   silver: ${base}/datalake/silver
@@ -10,6 +10,7 @@ paths:
   quarantine: ${base}/datalake/quarantine
   checkpoints: ${base}/datalake/_checkpoints
   meta: ${base}/datalake/_meta
+  evidence: ${base}/evidence
 
 spark:
   app_name: cloud-provider-analytics
@@ -18,17 +19,20 @@ spark:
   timezone: UTC
 
 streaming:
-  max_files_per_trigger: 10
-  trigger_interval: "5 minutes"
-  watermark: "2 days"             # decisión abierta: se calibra en la 2ª entrega
+  max_files_per_trigger: 30       # 120 archivos -> 4 micro-lotes (D19)
+  watermark: "60 days"            # cada archivo trae eventos de todo el período (D15)
+  trigger: available_now          # procesa lo pendiente y se detiene; en producción: processing_time
+  processing_time: "5 minutes"
 
 quality:
-  cost_tolerance_usd: -0.01
+  cost_tolerance_usd: -0.01       # regla R2
   anomaly_method: mad_by_service_metric
-  anomaly_threshold: 3.5
+  anomaly_threshold: 3.5          # D09
+  nps_min: -100
+  nps_max: 100
 
 cassandra:
   keyspace: cloud_analytics
-  consistency: LOCAL_QUORUM
-  secure_bundle_path: ${ASTRA_SECURE_BUNDLE_PATH}   # variable de entorno
-  token: ${ASTRA_DB_APPLICATION_TOKEN}              # variable de entorno
+  secure_bundle_env: ASTRA_SCB_PATH            # nombre de la variable / secreto, no el valor
+  token_env: ASTRA_DB_APPLICATION_TOKEN
+  concurrency: 50

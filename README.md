@@ -2,72 +2,95 @@
 
 Pipeline de datos **ETL + Streaming + Serving** para un proveedor de nube: ingesta, limpieza, conformado y publicación de datos de clientes para **FinOps**, **Soporte** y **Producto**.
 
-**Big Data · ITBA · 2C 2026** — Prof. Diego Mosquera  
+**Big Data · ITBA · 2C 2026** — Prof. Diego Mosquera
 **Grupo:** Cayetana Peces · Abril Solé · Agustina Edalian · Delfina Vázquez Escati
 
 | Entrega | Fecha | Estado |
 |---|---|---|
-| 1ª · Diseño y fundación de datos | 05/10/2026 (reprogramada) | ✅ entregada: ver [`docs/DISENO.md`](docs/DISENO.md) |
-| 2ª · Implementación técnica | 16/11/2026 | ⏳ |
-| Final · MVP + defensa | 07/12/2026 | ⏳ |
+| 1ª · Diseño y fundación de datos | 05/10/2026 (reprogramada) | ✅ entregada: [`docs/DISENO.md`](docs/DISENO.md) |
+| 2ª · Implementación técnica | 16/11/2026 | ✅ entregada: [`docs/ENTREGA2.md`](docs/ENTREGA2.md) |
+| Final · MVP + defensa | 07/12/2026 | ⏳ [`docs/BACKLOG.md`](docs/BACKLOG.md) |
 
 ---
 
-## Arquitectura (v1)
+## Arquitectura (v2: lo implementado)
 
-Fuentes → Ingesta (batch + streaming) → Data Lake **Landing / Bronze / Silver / Gold** (Parquet) → Spark → **Cassandra/AstraDB** → Consumo, con calidad, metadatos, linaje, seguridad y observabilidad como capacidades transversales. Patrón **Lambda**: la justificación está en el documento de diseño, §5.
+Landing → Bronze (batch para los CSV, Structured Streaming para los eventos) → Silver → Gold (Parquet) → **Cassandra/AstraDB** → FinOps. Patrón **Lambda** (D01): en esta entrega el streaming llega hasta Bronze y Silver/Gold se recalculan en batch (D16).
 
-![Arquitectura v1](docs/img/arquitectura_v1.png)
+![Arquitectura v2](docs/img/arquitectura_v2.png)
 
 ## Estructura del repositorio
 
 ```text
 .
-├── README.md                ← este archivo (Quickstart)
-├── DECISIONS.md             ← registro de decisiones técnicas y trade-offs
-├── docs/
-│   ├── DISENO.md            ← documento de diseño de la 1ª entrega
-│   ├── Diseno_Entrega1.pdf  ← mismo documento en PDF
-│   ├── plan_correcciones.md ← se completa con el feedback del 05/10
-│   └── img/                 ← diagramas (SVG + PNG)
+├── README.md                 ← este archivo (Quickstart)
+├── DECISIONS.md              ← decisiones técnicas y trade-offs (D01–D22)
+├── config/pipeline.example.yaml   ← configuración externalizada (sin credenciales)
+├── src/
+│   ├── common/               ← esquemas, lectura de config, run_log
+│   └── jobs/                 ← bronze_batch, bronze_stream, quality, silver, gold, serving
 ├── notebooks/
-│   └── 01_exploracion_y_bronze.ipynb   ← perfil de datos + Landing→Bronze + MapReduce↔Spark
-├── src/common/schemas.py    ← esquemas explícitos (fuente única para batch y streaming)
-├── config/pipeline.example.yaml        ← configuración externalizada (sin credenciales)
-├── data/README.md           ← cómo obtener el dataset
-├── evidence/                ← salidas y capturas de ejecución
-├── tests/                   ← pruebas (2ª entrega)
-└── infra/                   ← scripts de entorno (2ª entrega)
+│   ├── 01_exploracion_y_bronze.ipynb   ← 1ª entrega (perfil de datos + MapReduce)
+│   └── 02_pipeline_e2.ipynb            ← 2ª entrega: pipeline end-to-end
+├── cql/                      ← 01_schema.cql (tablas) · 02_consultas.cql (Q1, Q2)
+├── tests/                    ← pytest con SparkSession local
+├── docs/                     ← diseño, entrega 2, gobierno, diccionario, backlog, diagramas
+├── evidence/                 ← salidas de ejecución (run_log, quarantine, tamaños, tests, consultas)
+├── data/README.md            ← cómo obtener el dataset
+└── infra/README.md           ← entorno
 ```
 
 ## Quickstart (Google Colab)
 
-**Requisitos:** una cuenta de Google. Nada más: Colab trae Python y Java, y el notebook instala PySpark 3.5.3 si hace falta.
+**Requisitos:** cuenta de Google, el dataset `cloud_provider_challenge_dataset_v1.zip` (campus) y, para la sección de Cassandra, una base de AstraDB con el keyspace `cloud_analytics`, su *Secure Connect Bundle* y un token de aplicación.
 
-1. Abrí [Google Colab](https://colab.research.google.com) → **Archivo → Subir notebook** → elegí `notebooks/01_exploracion_y_bronze.ipynb`.
-2. En el panel izquierdo tocá el ícono de **carpeta** y subí `cloud_provider_challenge_dataset_v1.zip` (ver [`data/README.md`](data/README.md)).
-3. **Entorno de ejecución → Ejecutar todo** (≈2–3 minutos).
-4. Resultado esperado:
-   - `/content/datalake/bronze/` con 8 datasets en Parquet (`usage_events` particionado en 60 fechas);
-   - `/content/evidence/01_profile_summary.json`;
-   - el conteo de idempotencia `43,200 → 43,200`.
+1. **Abrir el notebook:** en [Colab](https://colab.research.google.com) → *Archivo → Abrir notebook → GitHub* → `delfivazqueze/cloud-provider-analytics` → `notebooks/02_pipeline_e2.ipynb`.
+2. **Subir los archivos:** en el panel izquierdo, ícono de **carpeta** → subir a `/content`:
+   - `cloud_provider_challenge_dataset_v1.zip`
+   - `secure-connect-big-data.zip` (el bundle de AstraDB; si no se sube, el notebook saltea la sección 8).
+3. **Cargar el token:** panel izquierdo, ícono de **llave (Secrets)** → *Agregar secreto* → nombre `ASTRA_DB_APPLICATION_TOKEN`, valor el token `AstraCS:...` → activar *Acceso al notebook*.
+4. **Ejecutar:** *Entorno de ejecución → Ejecutar todo* (≈5 minutos). La primera celda instala PySpark 3.5.3 y clona el repo para importar `src/`.
+5. **Resultado esperado:**
+   - Bronze: 7 maestros + `usage_events` (43.200 eventos, 4 micro-lotes, 0 descartados por watermark).
+   - Silver: 42.989 eventos + 211 en quarantine (`S01_COSTO_NEGATIVO`); 2.033 `unit` imputadas.
+   - Gold: `org_daily_usage_by_service` con 11.050 filas (grano único) y `top_services_14d` con 12.314.
+   - Idempotencia: todos los conteos iguales al re-ejecutar; el stream re-lanzado lee 0 filas.
+   - AstraDB: 11.050 filas en `org_daily_usage_by_service`, resultados de Q1 y Q2, conteo igual al recargar.
+   - Evidencias en `/content/evidence/`.
 
-**Limpieza / reinicio:** *Entorno de ejecución → Desconectar y borrar el entorno* (o borrar `/content/datalake`). Landing se vuelve a descomprimir desde el zip.
+**Pruebas:** en una celda nueva del mismo Colab:
+```bash
+!cd /content/cloud-provider-analytics && python -m pytest -q tests
+```
 
-**Versiones:** Python 3.10+ · PySpark 3.5.3 · Java 11/17 (el que trae Colab).
+**Limpieza / reinicio:** última celda del notebook (borra todo el lake menos Landing, incluidos los checkpoints) o *Entorno de ejecución → Desconectar y borrar el entorno*. Para borrar las tablas de Cassandra: `DROP TABLE cloud_analytics.org_daily_usage_by_service;` y `DROP TABLE cloud_analytics.top_services_14d;` en la CQL Console.
 
-## Datos
+**Versiones:** Python 3.10+ · PySpark 3.5.3 · Java 11/17 (el de Colab) · cassandra-driver 3.29+ · PyYAML.
 
-Dataset sintético provisto por la cátedra: 7 CSV + 120 archivos JSONL (43.200 eventos, 60 días, evolución de esquema v1 → v2 el 2025-07-18). El perfil completo está en el documento de diseño, §3.
+### Solución de problemas
+
+| Síntoma | Causa | Solución |
+|---|---|---|
+| `Credenciales de AstraDB disponibles: False` | falta el bundle en `/content` o el secreto no tiene acceso al notebook | revisar los pasos 2 y 3 |
+| Timeout o `NoHostAvailable` al conectar | la base de AstraDB se hiberna si no se usa | en el portal de Astra, entrar a la base y tocar **Resume**; esperar a que diga *Active* |
+| `git clone` falla en la primera celda | el repo no es público | subir el repo como zip a `/content` y descomprimirlo como `cloud-provider-analytics` |
+| `Unable to infer schema for Parquet` | se borró una zona a mano pero no su checkpoint | correr la celda de limpieza completa (borra también `_checkpoints`) |
+
+## Configuración
+
+`config/pipeline.example.yaml` concentra rutas, particiones de shuffle, parámetros del stream (`max_files_per_trigger`, `watermark`, `trigger`), umbrales de calidad y el keyspace. Para cambiar valores se copia a `config/pipeline.yaml` (ignorado por git) y tiene prioridad sobre el ejemplo.
 
 ## Convenciones
 
 - **Zonas:** `landing/` (inmutable) · `bronze/` · `silver/` · `gold/` · `quarantine/` · `_checkpoints/` · `_meta/`.
-- **Nombres:** `snake_case`; particiones con el formato Hive `columna=valor`; sufijos de unidad `_usd`, `_kg`, `_ts`, `_date`; flags con prefijo `is_`.
-- **Columnas técnicas** en todas las tablas: `ingest_ts`, `source_file` (y `run_id` desde la 2ª entrega).
-- **Secretos:** nunca en el repo. El token de AstraDB va en los secretos de Colab o en variables de entorno.
-- **Commits:** mensajes en español con prefijo (`docs:`, `feat:`, `fix:`, `data:`).
+- **Nombres:** `snake_case`; particiones Hive `columna=valor`; sufijos `_usd`, `_kg`, `_ts`, `_date`; flags con prefijo `is_`.
+- **Columnas técnicas:** `ingest_ts`, `source_file`, `run_id` en todas las zonas.
+- **Reglas de calidad:** `rule_id` con prefijo de zona (`B` Bronze, `S` Silver); catálogo en `docs/GOBIERNO.md`.
+- **Secretos:** nunca en el repo. Token en *Secrets* de Colab; el bundle está en `.gitignore`.
+- **Commits:** en español con prefijo (`docs:`, `feat:`, `fix:`, `data:`, `test:`).
 
 ## Limitaciones actuales
 
-La 1ª entrega es de diseño: está implementado Landing → Bronze (batch) más el perfil de datos. Streaming, Silver, Gold, Cassandra y gobierno están diseñados y se implementan en la 2ª entrega (ver el documento de diseño, §12).
+- El streaming llega hasta Bronze; Silver, Gold y Cassandra se recalculan en batch (D16). La vista incremental de la capa speed está en el backlog (M5).
+- Está implementado el mart FinOps `org_daily_usage_by_service` y las consultas Q1 y Q2. Q3–Q5 y los marts de revenue, soporte, GenAI y anomalías son de la entrega final.
+- El componente analítico es la detección de anomalías por MAD (D20); no hay etiquetas para medir precisión.

@@ -1,0 +1,24 @@
+run_id,job,zona,dataset,filas_entrada,filas_validas,filas_quarantine,filas_duplicadas,duracion_s,estado,detalle,ts
+20261109T000406-e50d16,bronze_batch,bronze,customers_orgs,80,80,0,0,7.16,OK,particion=ingest_date,2026-11-09 00:04:13.622748
+20261109T000406-e50d16,bronze_batch,bronze,users,800,800,0,0,1.58,OK,particion=ingest_date,2026-11-09 00:04:15.198417
+20261109T000406-e50d16,bronze_batch,bronze,resources,400,400,0,0,0.9,OK,particion=ingest_date,2026-11-09 00:04:16.101209
+20261109T000406-e50d16,bronze_batch,bronze,support_tickets,1000,1000,0,0,1.12,OK,particion=ingest_date,2026-11-09 00:04:17.220958
+20261109T000406-e50d16,bronze_batch,bronze,marketing_touches,1500,1500,0,0,0.87,OK,particion=ingest_date,2026-11-09 00:04:18.095566
+20261109T000406-e50d16,bronze_batch,bronze,nps_surveys,92,92,0,0,0.97,OK,particion=ingest_date,2026-11-09 00:04:19.062417
+20261109T000406-e50d16,bronze_batch,bronze,billing_monthly,240,240,0,0,1.21,OK,particion=billing_month,2026-11-09 00:04:20.277074
+20261109T000406-e50d16,bronze_stream,bronze,usage_events,43200,43200,0,0,9.36,OK,micro_lotes=4; tarde=0,2026-11-09 00:04:41.471020
+20261109T000406-e50d16,silver_dim_org,silver,dim_org,80,80,0,0,0.74,OK,nps_fuera_de_rango=1,2026-11-09 00:04:42.563307
+20261109T000406-e50d16,silver_usage_events,silver,usage_events,43200,42989,211,0,8.53,OK,unit_imputada=2033; anomalias=191,2026-11-09 00:04:52.373734
+20261109T000406-e50d16,gold_org_daily_usage,gold,org_daily_usage_by_service,42989,11050,0,0,4.93,OK,"entrada=eventos Silver; salida=filas (org, fecha, servicio)",2026-11-09 00:05:02.054947
+20261109T000406-e50d16,gold_top_services_14d,gold,top_services_14d,11050,12314,0,0,0.0,OK,vista derivada del mart para la consulta Q2,2026-11-09 00:05:02.146715
+20261109T000406-e50d16-reejecucion,bronze_batch,bronze,customers_orgs,80,80,0,0,0.72,OK,particion=ingest_date,2026-11-09 00:05:07.624784
+20261109T000406-e50d16-reejecucion,bronze_batch,bronze,users,800,800,0,0,0.67,OK,particion=ingest_date,2026-11-09 00:05:08.291714
+20261109T000406-e50d16-reejecucion,bronze_batch,bronze,resources,400,400,0,0,0.52,OK,particion=ingest_date,2026-11-09 00:05:08.813025
+20261109T000406-e50d16-reejecucion,bronze_batch,bronze,support_tickets,1000,1000,0,0,0.58,OK,particion=ingest_date,2026-11-09 00:05:09.390295
+20261109T000406-e50d16-reejecucion,bronze_batch,bronze,marketing_touches,1500,1500,0,0,0.63,OK,particion=ingest_date,2026-11-09 00:05:10.021465
+20261109T000406-e50d16-reejecucion,bronze_batch,bronze,nps_surveys,92,92,0,0,0.69,OK,particion=ingest_date,2026-11-09 00:05:10.709238
+20261109T000406-e50d16-reejecucion,bronze_batch,bronze,billing_monthly,240,240,0,0,0.63,OK,particion=billing_month,2026-11-09 00:05:11.337335
+20261109T000406-e50d16-reejecucion,silver_dim_org,silver,dim_org,80,80,0,0,0.58,OK,nps_fuera_de_rango=1,2026-11-09 00:05:12.000839
+20261109T000406-e50d16-reejecucion,silver_usage_events,silver,usage_events,43200,42989,211,0,6.78,OK,unit_imputada=2033; anomalias=191,2026-11-09 00:05:19.050092
+20261109T000406-e50d16-reejecucion,gold_org_daily_usage,gold,org_daily_usage_by_service,42989,11050,0,0,3.92,OK,"entrada=eventos Silver; salida=filas (org, fecha, servicio)",2026-11-09 00:05:22.970750
+20261109T000406-e50d16-reejecucion,gold_top_services_14d,gold,top_services_14d,11050,12314,0,0,0.0,OK,vista derivada del mart para la consulta Q2,2026-11-09 00:05:23.028203

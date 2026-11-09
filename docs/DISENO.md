@@ -2,9 +2,10 @@
 
 **Big Data · ITBA · 2C 2026 · Prof. Diego Mosquera**  
 **Primera entrega: diseño y fundación de datos** · versión 1.0 · 05/10/2026  
-**Grupo:** Cayetana Peces · Abril Solé · Agustina Edalian · Delfina Vázquez Escati
+**Grupo:** Cayetana Peces · Abril Solé · Agustina Edalian · Delfina Vázquez Escati  
+**Repositorio:** https://github.com/delfivazqueze/cloud-provider-analytics
 
-> Documento corto a propósito: cada sección responde un ítem de la consigna (§5.2) y todas las cifras salen del perfil de datos ejecutado con Spark (`notebooks/01_exploracion_y_bronze.ipynb`).
+> **Resumen.** Este documento presenta el diseño de una plataforma de datos para FinOps, Soporte y Producto de un proveedor de nube. Se basa en un Data Lake en capas (Landing, Bronze, Silver y Gold) procesado con Spark y en un patrón Lambda: streaming para los eventos de uso y batch para los maestros y la facturación. Los resultados se publican en Cassandra/AstraDB. Las cifras provienen del perfil de datos realizado con Spark sobre el dataset provisto (ver §12).
 
 ---
 
@@ -37,7 +38,7 @@
 
 ## 2. ¿Por qué Big Data? Análisis 5V
 
-La muestra provista es chica (≈13 MB). Nuestro argumento **no** es el volumen de la muestra: es el caso real que la muestra simula. Para dimensionarlo usamos el tamaño medido de un evento (~300 bytes en JSON) y un supuesto explícito de escala: **5.000 organizaciones × 20 recursos × 3 métricas, con un evento cada 5 minutos**.
+La muestra provista es pequeña (≈13 MB), por lo que la necesidad de Big Data no surge de su volumen sino del caso real que simula. Para dimensionarlo usamos el tamaño medido de un evento (~300 bytes en JSON) y un supuesto explícito de escala: **5.000 organizaciones × 20 recursos × 3 métricas, con un evento cada 5 minutos**.
 
 | V | En la muestra (medido) | En el caso real (supuesto) | ¿Dominante? | Decisión de arquitectura que provoca |
 |---|---|---|---|---|
@@ -53,7 +54,7 @@ La muestra provista es chica (≈13 MB). Nuestro argumento **no** es el volumen 
 
 ## 3. Inventario y perfil de fuentes
 
-Los perfiles son reales: salen de la ejecución con Spark 3.5 (ver `evidence/01_profile_summary.json`). La frecuencia de llegada es un **supuesto**, porque la consigna solo dice "diario o mensual".
+El perfil se obtuvo ejecutando Spark 3.5 sobre el dataset (ver `evidence/01_profile_summary.json`). La frecuencia de llegada es un **supuesto**, ya que el enunciado solo indica "diario o mensual".
 
 | Fuente | Grano (1 fila =) | Clave natural | Formato | Frecuencia (supuesto) | Filas | Calidad observada | Riesgo |
 |---|---|---|---|---|---|---|---|
@@ -62,7 +63,7 @@ Los perfiles son reales: salen de la ejecución con Spark 3.5 (ver `evidence/01_
 | resources | recurso cloud | resource_id | CSV | diaria | 400 | 83 `tags_json` nulos; JSON embebido | Parseo de tags |
 | support_tickets | ticket | ticket_id | CSV | diaria | 1.000 | 240 sin `resolved_at` (abiertos); 254 CSAT nulos; CSAT observado 0–7 | Escala de CSAT ambigua |
 | marketing_touches | interacción | touch_id | CSV | diaria | 1.500 | sin nulos | Fuera del alcance mínimo |
-| nps_surveys | encuesta (org, fecha) | (org_id, survey_date) | CSV | diaria | 92 | 19 NPS nulos, 10 comentarios nulos | Muestra chica |
+| nps_surveys | encuesta (org, fecha) | (org_id, survey_date) | CSV | diaria | 92 | 19 NPS nulos, 10 comentarios nulos | Muestra pequeña |
 | billing_monthly | factura | invoice_id | CSV | mensual | 240 (3 meses) | USD 160 / ARS 51 / EUR 29; 137 `credits` nulos; 13 subtotales negativos; tipo de cambio de USD entre 0,85 y 1,12 (≠ 1) | Conversión a USD mal aplicada |
 | usage_events_stream | evento de uso | event_id | JSONL (120 archivos) | continua (micro-lotes) | 43.200 | v1 10.800 / v2 32.400; `value` texto/null; `unit` null en 2.075; 216 costos < 0; **cada archivo trae eventos de todo el período** | Late data y orden de llegada |
 
@@ -104,7 +105,7 @@ Los perfiles son reales: salen de la ejecución con Spark 3.5 (ver `evidence/01_
 
 1. **Cada archivo de eventos trae eventos de los 60 días** (rango promedio de 59,7 días por archivo). En un stream, esto es *late data* masiva. Un watermark corto descartaría eventos válidos y uno largo dejaría crecer demasiado el estado. Con Lambda, la capa speed publica rápido una versión incremental, y el **recálculo batch diario desde Bronze** deja los marts exactos. El costo final no depende del orden en que llegaron los archivos.
 2. Facturación (3 meses), CRM y encuestas son **batch por naturaleza**. Tratarlos como streams (Kappa) agrega complejidad sin aportar frescura.
-3. El requisito invariable de la consigna (streaming de eventos + batch de maestros) calza directamente con las dos capas de Lambda.
+3. El requisito de procesar los eventos en streaming y los maestros en batch se corresponde directamente con las dos capas de Lambda.
 
 **Cómo se reconcilian las capas:** ambas escriben en Gold y en Cassandra con **upsert por la misma clave natural**, por ejemplo `(org_id, usage_date, service)`. El recálculo batch sobrescribe la fila con el valor definitivo. No hay duplicados ni una vista de merge extra.
 
@@ -112,7 +113,7 @@ Los perfiles son reales: salen de la ejecución con Spark 3.5 (ver `evidence/01_
 
 ## 6. Matriz requisito → componente (y relación con las 5V)
 
-| Req. | Requisito (consigna / objetivos) | V que lo motiva | Componente | Evidencia prevista |
+| Req. | Requisito (enunciado / objetivos) | V que lo motiva | Componente | Evidencia prevista |
 |---|---|---|---|---|
 | R1 | Ingesta batch de CSV a Bronze con esquema explícito, `ingest_ts`, `source_file` | Variedad, veracidad | Job batch `spark.read` → Bronze | ✅ notebook 01 (ya implementado) |
 | R2 | Streaming de eventos con watermark, dedupe por `event_id`, late data y checkpoint | Velocidad | Structured Streaming → Bronze | 2ª entrega |
@@ -155,8 +156,8 @@ Los perfiles son reales: salen de la ejecución con Spark 3.5 (ver `evidence/01_
 | `revenue_by_org_month` | Gold | Parquet | `month` | Grano mensual |
 | `quarantine/<fuente>` | Quarantine | Parquet | `rule_id`, `ingest_date` | Permite ver rápido qué regla falla y cuándo |
 
-- **Decisión explícita: no particionar eventos por `service`.** Con este volumen daría 360 carpetas de pocos KB (el problema de *small files* visto en HDFS: más metadatos en el NameNode y más tareas que datos). Se revisa si un día supera ~128 MB.
-- **Control de archivos:** `repartition("event_date")` antes de escribir da 1 archivo por fecha, y `coalesce(1)` se usa en los maestros chicos. Medido: 60 archivos para eventos y 1 por maestro.
+- **Decisión explícita: no particionar eventos por `service`.** Con este volumen daría 360 carpetas de pocos KB (el problema de *small files* propio de HDFS: más metadatos en el NameNode y más tareas que datos). Se revisa si un día supera ~128 MB.
+- **Control de archivos:** `repartition("event_date")` antes de escribir da 1 archivo por fecha, y `coalesce(1)` se usa en los maestros, que son pequeños. Medido: 60 archivos para eventos y 1 por maestro.
 - **Naming:** zonas `landing/ bronze/ silver/ gold/ quarantine/`; datasets en `snake_case`; particiones con el formato Hive `columna=valor`; columnas con sufijo de unidad o tipo (`_usd`, `_kg`, `_ts`, `_date`) y prefijo `is_` para los flags.
 - **Esquemas versionados** en código (`src/common/schemas.py`); la columna `schema_version` se conserva hasta Silver.
 
@@ -214,7 +215,7 @@ Los perfiles son reales: salen de la ejecución con Spark 3.5 (ver `evidence/01_
 
 **Decisión abierta:** el valor del watermark. El perfil muestra que cada archivo abarca todo el período, así que en la demo el watermark se usa para acotar el estado del dedupe, y la exactitud la garantiza el recálculo batch. El umbral se calibra en la 2ª entrega.
 
-**Modelo de serving preliminar (query-first)** — el detalle final se define en la clase de Cassandra (02/11):
+**Modelo de serving preliminar (query-first)** — el detalle final se cierra en la etapa de implementación:
 
 | Consulta | Tabla | Partition key | Clustering | Por qué |
 |---|---|---|---|---|
@@ -270,22 +271,22 @@ reduce(key, values):
 
 | Riesgo | Impacto | Prob. | Mitigación |
 |---|---|---|---|
-| Colab borra el disco al reiniciar (se pierden los checkpoints y el lake) | Alto | Alta | Lake y checkpoints en **Google Drive** montado; dataset de demo chico; script de limpieza y reinicio |
+| Colab borra el disco al reiniciar (se pierden los checkpoints y el lake) | Alto | Alta | Lake y checkpoints en **Google Drive** montado; dataset de demo reducido; script de limpieza y reinicio |
 | Late data masivo (cada archivo abarca 60 días) | Alto | Cierta | Lambda: el recálculo batch corrige; upsert por clave natural |
 | Conexión a AstraDB (token, bundle, conector) falla en la demo | Alto | Media | Probar la conexión en la semana 1 de la 2ª etapa; guardar evidencia (capturas y CSV de resultados); plan B con driver Python + `foreachBatch` |
 | Umbral de anomalías mal calibrado (el global marca 25 % o casi nada) | Medio | Alta | MAD por (servicio, métrica), medido en el notebook 01; umbral documentado en DECISIONS |
 | Conversión de moneda errónea | Alto | Media | Test unitario con una factura conocida de cada moneda; conciliación del total |
-| Escala de CSAT ambigua (0–7) | Bajo | Cierta | Consultar al docente; mientras tanto, fuera de rango → null + flag |
+| Escala de CSAT ambigua (0–7) | Bajo | Cierta | Validar la escala con la cátedra; mientras tanto, fuera de rango → null + flag |
 | Desbalance de carga y conocimiento en el grupo | Medio | Media | Roles por capa + revisión cruzada; repo con README y DECISIONS al día |
 | Hot partitions en Cassandra | Medio | Baja | Partition keys por org; bucket por mes si una partición crece |
 
-**Decisiones abiertas (para el feedback):** valor del watermark · SCD1 vs SCD2 para `dim_org` · tratamiento final de USD con tipo de cambio ≠ 1 · escala de CSAT · si Q3 es global o por organización (hoy se diseña global por severidad, con `tickets_by_org_date` como alternativa) · componente analítico (anomalías como capacidad analítica vs un modelo ML).
+**Decisiones abiertas:** valor del watermark · SCD1 vs SCD2 para `dim_org` · tratamiento final de USD con tipo de cambio ≠ 1 · escala de CSAT · si Q3 es global o por organización (hoy se diseña global por severidad, con `tickets_by_org_date` como alternativa) · componente analítico (anomalías como capacidad analítica vs un modelo ML).
 
 ---
 
 ## 11. Estimación de esfuerzo, roles y recursos
 
-**Roles propuestos** (a validar por el grupo)
+**Roles**
 
 | Integrante | Rol principal | Dueño de |
 |---|---|---|
@@ -303,13 +304,14 @@ reduce(key, values):
 | E3 · MVP (hasta 07/12) | 5 marts, 5 consultas, anomalías, gobierno, pruebas, presentación, video, defensa | 72 |
 | **Total** | | **≈204 h (≈51 h por persona)** |
 
-**Recursos:** Google Colab gratuito (2 vCPU, ~12 GB RAM, Spark `local[*]`), alcanza para la muestra · Google Drive (< 200 MB) · AstraDB free tier · GitHub · sin costo monetario.
+**Recursos:** Google Colab gratuito (2 vCPU, ~12 GB RAM, Spark `local[*]`), suficiente para la muestra · Google Drive (< 200 MB) · AstraDB free tier · GitHub · sin costo monetario.
 
 ---
 
 ## 12. Repositorio y evidencia de exploración
 
-- **Repo:** estructura recomendada por la consigna (§8.1), con README, `DECISIONS.md`, `config/`, `notebooks/`, `evidence/` y `docs/`.
+- **Repo:** https://github.com/delfivazqueze/cloud-provider-analytics, con README, `DECISIONS.md`, `config/`, `notebooks/`, `evidence/` y `docs/`.
+- **Alcance:** esta etapa corresponde a la planificación y el diseño; la implementación del pipeline se realiza en la segunda entrega. El notebook constituye la evidencia de lectura y exploración de los datos y es la fuente de las cifras de este documento.
 - **Evidencia:** `notebooks/01_exploracion_y_bronze.ipynb`, ejecutado con PySpark 3.5.3:
   - lee las 8 fuentes con esquemas explícitos, las perfila y escribe Bronze (8 datasets, 60 particiones de eventos);
   - demuestra la idempotencia (43.200 → 43.200 al re-ejecutar);

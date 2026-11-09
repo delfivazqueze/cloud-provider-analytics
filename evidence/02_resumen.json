@@ -1,0 +1,82 @@
+{
+  "run_id": "20261109T000406-e50d16",
+  "spark_version": "3.5.3",
+  "streaming": {
+    "bronze": {
+      "micro_lotes": 4,
+      "filas_leidas": 43200,
+      "descartadas_por_watermark": 0,
+      "emitidas": 43200,
+      "claves_en_estado": 43200
+    },
+    "watermark": "60 days",
+    "max_files_per_trigger": 30
+  },
+  "conteos": {
+    "bronze.usage_events": 43200,
+    "bronze.customers_orgs": 80,
+    "bronze.users": 800,
+    "bronze.billing_monthly": 240,
+    "silver.usage_events": 42989,
+    "silver.dim_org": 80,
+    "quarantine.usage_events_silver": 211,
+    "gold.org_daily_usage_by_service": 11050,
+    "gold.top_services_14d": 12314
+  },
+  "calidad": {
+    "S01_COSTO_NEGATIVO": 211
+  },
+  "unit_imputadas": 2033,
+  "anomalias": {
+    "eventos": 191,
+    "tasa_pct": 0.44,
+    "metodo": "MAD por (service, metric)",
+    "umbral": 3.5
+  },
+  "gold": {
+    "filas": 11050,
+    "claves_duplicadas": 0,
+    "costo_silver": 148351.6,
+    "costo_gold": 148351.6
+  },
+  "idempotencia": {
+    "bronze.usage_events": [
+      43200,
+      43200
+    ],
+    "bronze.customers_orgs": [
+      80,
+      80
+    ],
+    "bronze.users": [
+      800,
+      800
+    ],
+    "bronze.billing_monthly": [
+      240,
+      240
+    ],
+    "silver.usage_events": [
+      42989,
+      42989
+    ],
+    "silver.dim_org": [
+      80,
+      80
+    ],
+    "quarantine.usage_events_silver": [
+      211,
+      211
+    ],
+    "gold.org_daily_usage_by_service": [
+      11050,
+      11050
+    ],
+    "gold.top_services_14d": [
+      12314,
+      12314
+    ]
+  },
+  "org_ejemplo": "org_ktakpuxq",
+  "ultima_fecha": "2025-08-31"
+}
