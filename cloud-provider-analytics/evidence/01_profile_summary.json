@@ -1,0 +1,104 @@
+{
+  "generado_utc": "2026-09-28T22:49:25",
+  "spark_version": "3.5.3",
+  "conteos_landing": {
+    "customers_orgs": 80,
+    "users": 800,
+    "resources": 400,
+    "support_tickets": 1000,
+    "marketing_touches": 1500,
+    "nps_surveys": 92,
+    "billing_monthly": 240,
+    "usage_events_stream": 43200
+  },
+  "nulos": {
+    "customers_orgs": {
+      "nps_score": 11
+    },
+    "users": {
+      "last_login": 139
+    },
+    "resources": {
+      "tags_json": 83
+    },
+    "support_tickets": {
+      "resolved_at": 240,
+      "csat": 254
+    },
+    "marketing_touches": {},
+    "nps_surveys": {
+      "nps_score": 19,
+      "comment": 10
+    },
+    "billing_monthly": {
+      "credits": 137
+    },
+    "usage_events_stream": {
+      "value_raw": 877,
+      "unit": 2075,
+      "carbon_kg": 10800,
+      "genai_tokens": 40068
+    }
+  },
+  "eventos": {
+    "v2_desde": "2025-07-18",
+    "rango": [
+      "2025-07-03",
+      "2025-08-31"
+    ],
+    "value_sin_unit": 2038,
+    "costos_negativos": 216,
+    "costos_bajo_tolerancia": 211,
+    "percentiles_costo": {
+      "p1": 0.0,
+      "p25": 0.1285,
+      "p50": 1.0043,
+      "p75": 6.1153,
+      "p99": 16.6934,
+      "p99_9": 103.6077
+    },
+    "event_id_duplicados": 0
+  },
+  "bronze": {
+    "billing_monthly": {
+      "particiones": 3,
+      "archivos": 3,
+      "kb": 18.9
+    },
+    "customers_orgs": {
+      "particiones": 1,
+      "archivos": 1,
+      "kb": 6.4
+    },
+    "marketing_touches": {
+      "particiones": 1,
+      "archivos": 1,
+      "kb": 22.5
+    },
+    "nps_surveys": {
+      "particiones": 1,
+      "archivos": 1,
+      "kb": 3.7
+    },
+    "resources": {
+      "particiones": 1,
+      "archivos": 1,
+      "kb": 9.6
+    },
+    "support_tickets": {
+      "particiones": 1,
+      "archivos": 1,
+      "kb": 18.5
+    },
+    "usage_events": {
+      "particiones": 60,
+      "archivos": 60,
+      "kb": 2486.5
+    },
+    "users": {
+      "particiones": 1,
+      "archivos": 1,
+      "kb": 23.2
+    }
+  }
+}
