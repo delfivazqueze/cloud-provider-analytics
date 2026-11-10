@@ -1,0 +1,4 @@
+rank,service,cost_14d_usd,requests_14d
+1,compute,651.5958,7256.0
+2,genai,141.8207,1115.0
+3,database,64.3944,1296.0
