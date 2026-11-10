@@ -13,7 +13,7 @@ Priorizado con MoSCoW después de la 2ª entrega. Regla que nos pusimos: nada de
 | M5 | Capa speed hasta Gold/Cassandra con `foreachBatch` (upsert solo de las claves del micro-lote) para cumplir O1 | Cayetana | 8 h | `lastProgress` + fila visible en Cassandra < 10 min |
 | M6 | Diccionario y gobierno completos para los 5 marts; token de solo lectura para consumo | Delfina | 4 h | `docs/` actualizados |
 | M7 | Quickstart validado desde un Colab nuevo por alguien que no armó el pipeline | todo el grupo | 2 h | checklist firmada en el README |
-| M8 | Presentación ejecutiva, video y ensayo de la defensa (las 4 explican su capa) | todo el grupo | 12 h | slides + video |
+| M8 | Presentación ejecutiva, video y defensa oral con participación de las 4 | todo el grupo | 12 h | slides + video |
 
 ## Deseable (si queda tiempo, sin poner en riesgo lo anterior)
 

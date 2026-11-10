@@ -1,7 +1,7 @@
 # Cloud Provider Analytics — Segunda entrega: implementación técnica
 
-**Big Data · ITBA · 2C 2026 · Prof. Diego Mosquera** · versión 2.0 · 16/11/2026
-**Grupo:** Cayetana Peces · Abril Solé · Agustina Edalian · Delfina Vázquez Escati
+**Big Data · ITBA · 2C 2026 · Prof. Diego Mosquera** · versión 2.0 · 16/11/2026  
+**Grupo:** Cayetana Peces · Abril Solé · Agustina Edalian · Delfina Vázquez Escati  
 **Repositorio:** https://github.com/delfivazqueze/cloud-provider-analytics
 
 > **Resumen.** El diseño de la E1 ya corre: Landing → Bronze (batch y Structured Streaming) → Silver → Gold → AstraDB, en un solo notebook (`notebooks/02_pipeline_e2.ipynb`) que llama a funciones de `src/` con la configuración en `config/`. Todas las cifras de este documento salen de esa ejecución (`evidence/02_resumen.json`). Lo que cambió respecto del diseño está registrado en `DECISIONS.md` (D15–D22) y lo que falta para la final en `docs/BACKLOG.md`.
@@ -25,7 +25,10 @@
 | README Quickstart, logs y evidencias | ✅ | `README.md` · `evidence/` · `_meta/run_log` |
 | Backlog final priorizado | ✅ | `docs/BACKLOG.md` (MoSCoW) |
 
-## 2. Qué cambió respecto del diseño v1
+## 2. Arquitectura v2 y cambios respecto del diseño v1
+
+![Arquitectura v2](img/arquitectura_v2.png)
+
 
 | Diseño v1 | Implementación v2 | Por qué |
 |---|---|---|
@@ -95,7 +98,28 @@ Bronze tiene 4 archivos por fecha (uno por micro-lote); Silver y Gold, uno (`rep
 | Q1 costos y requests diarios por org y servicio en un rango | `org_daily_usage_by_service` | `((org_id), usage_date, service)`, `usage_date DESC` | el rango de fechas se resuelve dentro de una partición |
 | Q2 Top-N servicios por costo de los últimos 14 días | `top_services_14d` | `((org_id, as_of_date), rank)`, `rank ASC` | Cassandra no ordena por agregados: el ranking viene de Spark y `LIMIT N` alcanza |
 
-Carga: driver de Python con sentencias preparadas y escritura concurrente; `INSERT` es upsert por PK. Las consultas, con la org de mayor costo (`org_ktakpuxq`) al 31/08/2025, están en `cql/02_consultas.cql`; resultados en `evidence/02_cassandra_q1.csv`, `evidence/02_cassandra_q2.csv` y capturas en `evidence/capturas/`.
+Carga: driver de Python con sentencias preparadas y escritura concurrente; `INSERT` es upsert por PK. Se cargaron 11.050 filas en `org_daily_usage_by_service` y 12.314 en `top_services_14d`, con 0 errores; el conteo en Cassandra coincide con Gold.
+
+Resultados para la org de mayor costo (`org_ktakpuxq`) al 31/08/2025 (CQL en `cql/02_consultas.cql`; salidas en `evidence/02_cassandra_q1.csv` y `02_cassandra_q2.csv`; capturas de Colab y de la CQL Console en `evidence/capturas/`):
+
+**Q1** (18/08 a 31/08): 35 filas, una por día y servicio. Primeras filas:
+
+| usage_date | service | daily_cost_usd | requests | events |
+|---|---|---|---|---|
+| 2025-08-31 | compute | 27,9866 | 344 | 6 |
+| 2025-08-31 | genai | 10,9669 | 108 | 3 |
+| 2025-08-30 | compute | 21,9982 | 225 | 6 |
+| 2025-08-30 | genai | 16,2525 | 123 | 3 |
+
+`requests` queda `null` los días en que el servicio no tuvo eventos de esa métrica (no medido ≠ 0).
+
+**Q2** (Top-3 de los últimos 14 días), igual al ranking calculado en Gold:
+
+| rank | service | cost_14d_usd | requests_14d |
+|---|---|---|---|
+| 1 | compute | 651,5958 | 7.256 |
+| 2 | genai | 141,8207 | 1.115 |
+| 3 | database | 64,3944 | 1.296 |
 
 ## 8. Idempotencia
 
@@ -105,7 +129,7 @@ Carga: driver de Python con sentencias preparadas y escritura concurrente; `INSE
 | bronze.customers_orgs / users / billing_monthly | 80 / 800 / 240 | 80 / 800 / 240 |
 | silver.usage_events / quarantine | 42.989 / 211 | 42.989 / 211 |
 | gold.org_daily_usage_by_service | 11.050 | 11.050 |
-| Cassandra org_daily_usage_by_service (recarga completa) | ver notebook 02 §8 | ver notebook 02 §8 |
+| Cassandra org_daily_usage_by_service (recarga completa) | 11.050 | 11.050 |
 
 Mecanismos: checkpoint por query en el stream, dedupe por clave natural, overwrite dinámico por partición y upsert por PK en Cassandra.
 
@@ -115,11 +139,11 @@ Mecanismos: checkpoint por query en el stream, dedupe por clave natural, overwri
 - **Pruebas:** 11 tests con `pytest` + SparkSession local (`evidence/02_tests_pytest.txt`): reglas B y S con casos armados a propósito, dedupe del stream con reentrega y re-ejecución con checkpoint, v1/v2, MAD por grupo, grano y sumas del mart, Top-14d y parseo del CQL.
 - **Reproducibilidad:** Quickstart en el README, configuración externa, sin credenciales en el repo (token en Secrets de Colab, bundle en `.gitignore`), celda de limpieza/reinicio.
 
-## 10. Roles en esta entrega
+## 10. Roles
 
-| Integrante | Responsable de | Explica en la defensa |
-|---|---|---|
-| Cayetana Peces | `bronze_batch`, `bronze_stream`, experimento de watermark | §2–3 del notebook |
-| Abril Solé | `quality`, `silver`, anomalías MAD, tests de reglas | §4–5 |
-| Agustina Edalian | `gold`, `serving`, modelo Cassandra y consultas | §6 y §8 |
-| Delfina Vázquez Escati | config, run_log, idempotencia, gobierno, diagrama v2, README | §0, §7, §9 |
+| Integrante | Responsable de |
+|---|---|
+| Cayetana Peces | Ingesta: `bronze_batch`, `bronze_stream`, watermark y checkpoints |
+| Abril Solé | Procesamiento y calidad: `quality`, `silver`, anomalías |
+| Agustina Edalian | Gold y serving: `gold`, `serving`, modelo Cassandra y consultas |
+| Delfina Vázquez Escati | Arquitectura y gobierno: config, run_log, idempotencia, gobierno, diagrama, README |

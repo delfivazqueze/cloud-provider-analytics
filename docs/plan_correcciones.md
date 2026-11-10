@@ -4,7 +4,7 @@
 
 | # | Observación del docente | Prioridad | Responsable | Fecha objetivo | Evidencia esperada | Estado |
 |---|---|---|---|---|---|---|
-| 1 | "Falta observar la defensa real" (Defensa 9/10) | Recomendada | Todo el grupo | 16/11/2026 | Las 4 integrantes explican su capa en la demo de la 2ª entrega | Planificada: cada sección del notebook 02 tiene responsable |
+| 1 | "Falta observar la defensa real" (Defensa 9/10) | Recomendada | Todo el grupo | 07/12/2026 | Defensa oral de la entrega final con participación de las 4 integrantes | Pendiente (entrega final): cada sección del notebook 02 tiene responsable |
 | 2 | "No sobre-ingenierizar lo que ya está bien diseñado" | Obligatoria (criterio para E2) | Delfina (arquitectura) | 16/11/2026 | Alcance de E2 limitado al checklist §9.2 de la consigna; los extras van al backlog | Hecha: streaming hasta Bronze (D16), un mart Gold, 2 tablas Cassandra; el resto en `docs/BACKLOG.md` |
 | 3 | Mantener la consistencia entre diagrama e implementación | Recomendada | Delfina | 16/11/2026 | Arquitectura v2 que refleje solo lo implementado | Hecha: `docs/img/arquitectura_v2.png` |
 
