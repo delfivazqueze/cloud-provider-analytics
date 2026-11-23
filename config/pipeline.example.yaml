@@ -19,17 +19,19 @@ spark:
   timezone: UTC
 
 streaming:
-  max_files_per_trigger: 30       # 120 archivos -> 4 micro-lotes (D19)
+  max_files_per_trigger: 30       # 120 archivos -> 4 micro-lotes (D17)
   watermark: "60 days"            # cada archivo trae eventos de todo el período (D15)
   trigger: available_now          # procesa lo pendiente y se detiene; en producción: processing_time
   processing_time: "5 minutes"
 
 quality:
-  cost_tolerance_usd: -0.01       # regla R2
   anomaly_method: mad_by_service_metric
   anomaly_threshold: 3.5          # D09
   nps_min: -100
   nps_max: 100
+  csat_min: 1                     # D24: escala esperada 1-5
+  csat_max: 5
+  currencies: [USD, ARS, EUR]
 
 cassandra:
   keyspace: cloud_analytics

@@ -1,0 +1,142 @@
+{
+  "run_id": "20261118T130005-cadbac",
+  "spark_version": "3.5.3",
+  "streaming": {
+    "bronze": {
+      "micro_lotes": 4,
+      "filas_leidas": 43200,
+      "descartadas_por_watermark": 0,
+      "emitidas": 43200,
+      "claves_en_estado": 43200
+    },
+    "watermark": "60 days",
+    "max_files_per_trigger": 30
+  },
+  "conteos": {
+    "bronze.usage_events": 43200,
+    "bronze.customers_orgs": 80,
+    "bronze.users": 800,
+    "bronze.billing_monthly": 240,
+    "silver.usage_events": 43196,
+    "silver.dim_org": 80,
+    "quarantine.usage_events_silver": 4,
+    "gold.org_daily_usage_by_service": 11050,
+    "gold.top_services_14d": 12314,
+    "silver.billing_usd": 240,
+    "silver.support_tickets": 1000,
+    "gold.revenue_by_org_month": 240,
+    "gold.tickets_by_org_date": 984,
+    "gold.tickets_by_severity_date": 575,
+    "gold.genai_tokens_by_org_date": 1131,
+    "gold.cost_anomaly_mart": 11050
+  },
+  "calidad": {
+    "S01_COSTO_NEGATIVO_SIN_CONSUMO": 4
+  },
+  "unit_imputadas": 2038,
+  "costos_signo_corregido": {
+    "eventos": 212,
+    "costo_original": -895.21,
+    "costo_corregido": 895.21
+  },
+  "anomalias": {
+    "eventos": 191,
+    "tasa_pct": 0.44,
+    "metodo": "MAD por (service, metric)",
+    "umbral": 3.5
+  },
+  "gold": {
+    "org_daily_usage_by_service": {
+      "filas": 11050,
+      "claves_duplicadas": 0,
+      "costo_silver": 149246.81,
+      "costo_gold": 149246.81
+    },
+    "revenue_by_org_month": 240,
+    "tickets_by_org_date": 984,
+    "tickets_by_severity_date": 575,
+    "genai_tokens_by_org_date": 1131,
+    "cost_anomaly_mart": 11050,
+    "revenue_usd_silver": 164293.06,
+    "revenue_usd_gold": 164293.07
+  },
+  "facturacion": {
+    "facturas": 240,
+    "fx_usd_forzado_a_1": 160,
+    "ajustes": 13
+  },
+  "tickets": {
+    "tickets": 1000,
+    "csat_fuera_de_rango": 40
+  },
+  "idempotencia": {
+    "bronze.usage_events": [
+      43200,
+      43200
+    ],
+    "bronze.customers_orgs": [
+      80,
+      80
+    ],
+    "bronze.users": [
+      800,
+      800
+    ],
+    "bronze.billing_monthly": [
+      240,
+      240
+    ],
+    "silver.usage_events": [
+      43196,
+      43196
+    ],
+    "silver.dim_org": [
+      80,
+      80
+    ],
+    "quarantine.usage_events_silver": [
+      4,
+      4
+    ],
+    "gold.org_daily_usage_by_service": [
+      11050,
+      11050
+    ],
+    "gold.top_services_14d": [
+      12314,
+      12314
+    ],
+    "silver.billing_usd": [
+      240,
+      240
+    ],
+    "silver.support_tickets": [
+      1000,
+      1000
+    ],
+    "gold.revenue_by_org_month": [
+      240,
+      240
+    ],
+    "gold.tickets_by_org_date": [
+      984,
+      984
+    ],
+    "gold.tickets_by_severity_date": [
+      575,
+      575
+    ],
+    "gold.genai_tokens_by_org_date": [
+      1131,
+      1131
+    ],
+    "gold.cost_anomaly_mart": [
+      11050,
+      11050
+    ]
+  },
+  "org_ejemplo": "org_ktakpuxq",
+  "org_genai": "org_pbhsahxt",
+  "ultima_fecha": "2025-08-31",
+  "ultima_fecha_tickets": "2025-08-31"
+}

@@ -10,19 +10,26 @@ from cassandra.cluster import Cluster
 from cassandra.concurrent import execute_concurrent_with_args
 
 
-def connect(scb_path, token, keyspace):
+def connect(scb_path, token, keyspace=None):
+    """Conexión a AstraDB con protocolo v4 fijo (el que soporta Astra). Sin keyspace por defecto: las sentencias
+    usan nombres calificados keyspace.tabla, como recomienda el driver (el keyspace solo se usa en el notebook 02)."""
     cluster = Cluster(cloud={"secure_connect_bundle": scb_path},
-                      auth_provider=PlainTextAuthProvider("token", token))
-    session = cluster.connect(keyspace)
+                      auth_provider=PlainTextAuthProvider("token", token),
+                      protocol_version=4)
+    session = cluster.connect(keyspace) if keyspace else cluster.connect()
     session.default_timeout = 60
     return cluster, session
 
 
-def run_cql_file(session, path):
-    """Ejecuta un archivo .cql sentencia por sentencia (separadas por ';'), ignorando comentarios."""
+def run_cql_file(session, path, keyspace=None):
+    """Ejecuta un archivo .cql sentencia por sentencia (separadas por ';'), ignorando comentarios.
+    Las tablas del archivo no llevan keyspace: se agrega acá."""
     with open(path) as f:
         lines = [l for l in f.read().splitlines() if not l.strip().startswith("--")]
     statements = [s.strip() for s in "\n".join(lines).split(";") if s.strip()]
+    if keyspace:
+        statements = [s.replace("CREATE TABLE IF NOT EXISTS ", f"CREATE TABLE IF NOT EXISTS {keyspace}.", 1)
+                      for s in statements]
     for s in statements:
         session.execute(s)
     return len(statements)

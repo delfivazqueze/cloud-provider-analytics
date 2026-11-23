@@ -40,8 +40,9 @@ def _silver_input(spark):
             "unit string, cost_usd_increment double, carbon_kg double, genai_tokens long")
     return spark.createDataFrame([
         ("ok", "org_a", "Compute ", "US-EAST", "requests", 10.0, "count", 1.5, None, None),
-        ("neg", "org_a", "compute", "us-east", "requests", 10.0, "count", -0.5, None, None),       # S01
-        ("redondeo", "org_a", "compute", "us-east", "requests", 10.0, "count", -0.005, None, None),  # -> 0
+        ("neg", "org_a", "compute", "us-east", "requests", 10.0, "count", -0.5, None, None),         # signo -> 0.5
+        ("neg_chico", "org_a", "compute", "us-east", "requests", 10.0, "count", -0.005, None, None), # signo -> 0.005
+        ("neg_sin_valor", "org_a", "compute", "us-east", "requests", None, "count", -2.0, None, None),  # S01
         ("sin_unit", "org_a", "storage", "us-east", "storage_gb_hours", 3.0, None, 0.2, 0.01, None),  # imputar
         ("metrica_rara", "org_a", "storage", "us-east", "iops", 3.0, None, 0.2, None, None),      # S02
         ("sin_org", "org_zzz", "compute", "us-east", "cpu_hours", 1.0, "hours", 0.1, None, None),  # S03
@@ -54,24 +55,23 @@ def _dim(spark):
 
 
 def test_reglas_silver(spark):
-    conf = conform_events(_silver_input(spark), _dim(spark), -0.01)
-    validos, quar = split_by_rules(conf, event_silver_rules(-0.01, list(METRIC_UNIT)))
+    conf = conform_events(_silver_input(spark), _dim(spark))
+    validos, quar = split_by_rules(conf, event_silver_rules(list(METRIC_UNIT)))
     q = {r.event_id: r.rule_id for r in quar.collect()}
-    assert q == {"neg": "S01_COSTO_NEGATIVO", "metrica_rara": "S02_UNIT_NO_IMPUTABLE", "sin_org": "S03_ORG_INEXISTENTE"}
+    assert q == {"neg_sin_valor": "S01_COSTO_NEGATIVO_SIN_CONSUMO", "metrica_rara": "S02_UNIT_NO_IMPUTABLE",
+                 "sin_org": "S03_ORG_INEXISTENTE"}
 
     v = {r.event_id: r for r in validos.collect()}
-    assert set(v) == {"ok", "redondeo", "sin_unit"}
-    assert v["redondeo"].cost_usd_increment == 0.0 and v["redondeo"].is_cost_adjusted
+    assert set(v) == {"ok", "neg", "neg_chico", "sin_unit"}
     assert v["sin_unit"].unit == "gb_hours" and v["sin_unit"].unit_imputed
     assert not v["ok"].unit_imputed
     assert v["ok"].service == "compute" and v["ok"].region == "us-east"   # normalización
 
 
-def test_tolerancia_exacta(spark):
-    """-0.01 está permitido (>= -0.01); -0.0101 no."""
-    df = _silver_input(spark).limit(1)
-    df = df.withColumn("cost_usd_increment", F.lit(-0.01)).union(
-        df.withColumn("event_id", F.lit("x")).withColumn("cost_usd_increment", F.lit(-0.0101)))
-    conf = conform_events(df, _dim(spark), -0.01)
-    _, quar = split_by_rules(conf, event_silver_rules(-0.01, list(METRIC_UNIT)))
-    assert [r.event_id for r in quar.collect()] == ["x"]
+def test_correccion_de_signo(spark):
+    """D29: un costo negativo con consumo medido es un error de signo; se corrige y se conserva el original."""
+    v = {r.event_id: r for r in conform_events(_silver_input(spark), _dim(spark)).collect()}
+    assert v["neg"].cost_usd_increment == 0.5 and v["neg"].cost_usd_raw == -0.5 and v["neg"].is_cost_sign_corrected
+    assert v["neg_chico"].cost_usd_increment == 0.005 and v["neg_chico"].is_cost_sign_corrected
+    assert v["ok"].cost_usd_increment == 1.5 and not v["ok"].is_cost_sign_corrected
+    assert v["neg_sin_valor"].cost_usd_increment == -2.0 and not v["neg_sin_valor"].is_cost_sign_corrected

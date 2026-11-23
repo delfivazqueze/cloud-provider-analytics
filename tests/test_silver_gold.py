@@ -15,7 +15,7 @@ def test_v1_queda_con_null_y_no_con_cero(spark):
        "unit string, cost_usd_increment double, carbon_kg double, genai_tokens long")
     dim = spark.createDataFrame([("org_a", "A", "x", "pro", False)],
                                 "org_id string, org_name string, industry string, plan_tier string, is_enterprise boolean")
-    r = {x.event_id: x for x in conform_events(df, dim, -0.01).collect()}
+    r = {x.event_id: x for x in conform_events(df, dim).collect()}
     assert r["v1"].carbon_kg is None and r["v1"].genai_tokens is None
     assert r["v2"].genai_tokens == 1200
     assert r["v1"].requests == 5.0 and r["v1"].cpu_hours is None

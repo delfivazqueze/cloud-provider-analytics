@@ -1,5 +1,7 @@
 """Registro de ejecuciones en _meta/run_log (observabilidad y conciliación de conteos)."""
+import contextlib
 import datetime
+import time
 import uuid
 
 from pyspark.sql import types as T
@@ -21,7 +23,7 @@ RUN_LOG_SCHEMA = T.StructType([
 
 
 def new_run_id():
-    return datetime.datetime.utcnow().strftime("%Y%m%dT%H%M%S") + "-" + uuid.uuid4().hex[:6]
+    return datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None).strftime("%Y%m%dT%H%M%S") + "-" + uuid.uuid4().hex[:6]
 
 
 class RunLog:
@@ -40,8 +42,22 @@ class RunLog:
         if conciliar and estado == "OK" and entrada is not None and entrada != validas + quarantine + duplicados:
             estado = "CONCILIACION_FALLIDA"
         self.rows.append((self.run_id, job, zona, dataset, entrada, validas, quarantine, duplicados,
-                          round(duracion_s, 2), estado, detalle, datetime.datetime.utcnow()))
+                          round(duracion_s, 2), estado, detalle, datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None)))
         return estado
+
+    @contextlib.contextmanager
+    def track(self, job, zona, dataset):
+        """Envuelve la ejecución de un job: si falla, deja una fila con estado ERROR y el mensaje
+        en _meta/run_log antes de propagar la excepción (el notebook se detiene, pero queda registro)."""
+        t0 = time.time()
+        try:
+            yield self
+        except Exception as e:
+            msg = f"{type(e).__name__}: {str(e).splitlines()[0][:300] if str(e) else ''}"
+            self.add(job, zona, dataset, None, 0, duracion_s=time.time() - t0, estado="ERROR",
+                     detalle=msg, conciliar=False)
+            self.flush()
+            raise
 
     def flush(self):
         if self.rows:

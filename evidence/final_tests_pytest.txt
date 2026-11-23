@@ -1,0 +1,25 @@
+collecting ... collected 21 items
+
+tests/test_idempotencia_fallos_serving.py::test_pipeline_idempotente_de_punta_a_punta PASSED [  4%]
+tests/test_idempotencia_fallos_serving.py::test_json_corrupto_va_a_quarantine PASSED [  9%]
+tests/test_idempotencia_fallos_serving.py::test_fallo_queda_registrado_en_run_log PASSED [ 14%]
+tests/test_idempotencia_fallos_serving.py::test_conciliacion_fallida PASSED [ 19%]
+tests/test_idempotencia_fallos_serving.py::test_carga_a_cassandra_por_lotes_y_errores PASSED [ 23%]
+tests/test_idempotencia_fallos_serving.py::test_conteo_por_particion PASSED [ 28%]
+tests/test_ingesta.py::test_batch_corruptas_y_duplicados PASSED          [ 33%]
+tests/test_ingesta.py::test_stream_dedupe_y_checkpoint PASSED            [ 38%]
+tests/test_marts_finales.py::test_conversion_a_usd PASSED                [ 42%]
+tests/test_marts_finales.py::test_csat_fuera_de_rango PASSED             [ 47%]
+tests/test_marts_finales.py::test_serie_diaria_sin_huecos PASSED         [ 52%]
+tests/test_marts_finales.py::test_genai_y_anomalias PASSED               [ 57%]
+tests/test_quality_rules.py::test_reglas_bronze PASSED                   [ 61%]
+tests/test_quality_rules.py::test_primera_regla_que_falla_gana PASSED    [ 66%]
+tests/test_quality_rules.py::test_reglas_silver PASSED                   [ 71%]
+tests/test_quality_rules.py::test_correccion_de_signo PASSED             [ 76%]
+tests/test_serving.py::test_schema_cql PASSED                            [ 80%]
+tests/test_silver_gold.py::test_v1_queda_con_null_y_no_con_cero PASSED   [ 85%]
+tests/test_silver_gold.py::test_mad_marca_el_spike_de_su_grupo PASSED    [ 90%]
+tests/test_silver_gold.py::test_mart_grano_y_sumas PASSED                [ 95%]
+tests/test_silver_gold.py::test_top_services_14d PASSED                  [100%]
+
+============================= 21 passed  ==============================

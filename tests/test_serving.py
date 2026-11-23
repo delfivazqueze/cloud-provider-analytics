@@ -16,9 +16,13 @@ class FakeSession:
 
 def test_schema_cql():
     s = FakeSession()
-    assert run_cql_file(s, CQL) == 2
-    org, top = s.statements
+    assert run_cql_file(s, CQL, "cloud_analytics") == 5
+    org, top, tickets, revenue, genai = s.statements
     assert "PRIMARY KEY ((org_id), usage_date, service)" in org
     assert "CLUSTERING ORDER BY (usage_date DESC, service ASC)" in org
     assert "PRIMARY KEY ((org_id, as_of_date), rank)" in top
-    assert not any("--" in x for x in s.statements)        # los comentarios no llegan a Cassandra
+    assert not any("--" in x for x in s.statements)
+    assert all(x.startswith("CREATE TABLE IF NOT EXISTS cloud_analytics.") for x in s.statements)        # los comentarios no llegan a Cassandra
+    assert "PRIMARY KEY ((severity), ticket_date)" in tickets
+    assert "PRIMARY KEY ((org_id), billing_month)" in revenue
+    assert "PRIMARY KEY ((org_id), usage_date)" in genai

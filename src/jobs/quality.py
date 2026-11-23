@@ -12,9 +12,11 @@ RULES = {
     "B02_CLAVE_NULA": "Clave natural nula (event_id, org_id, invoice_id...)",
     "B03_TIMESTAMP_INVALIDO": "timestamp nulo o no parseable",
     "B04_SCHEMA_VERSION": "schema_version fuera de {1, 2}",
-    "S01_COSTO_NEGATIVO": "cost_usd_increment < -0.01 (se marca además is_cost_anomaly)",
+    "S01_COSTO_NEGATIVO_SIN_CONSUMO": "cost_usd_increment < 0 sin consumo medido (value nulo): no se puede validar el signo",
     "S02_UNIT_NO_IMPUTABLE": "value informado sin unit y con metric desconocida",
     "S03_ORG_INEXISTENTE": "org_id no existe en dim_org",
+    "S04_MONEDA_INVALIDA": "currency fuera de {USD, ARS, EUR} o exchange_rate_to_usd <= 0",
+    "S05_FECHA_INVALIDA": "fecha nula o no parseable",
 }
 
 
@@ -41,11 +43,28 @@ def event_bronze_rules():
     ]
 
 
-def event_silver_rules(tolerance, known_metrics):
-    """Reglas de Silver para eventos. Se aplican después de normalizar y de imputar unit."""
+def event_silver_rules(known_metrics):
+    """Reglas de Silver para eventos. Se aplican después de normalizar, imputar unit y corregir el signo (D29):
+    a esta altura solo queda un costo negativo si el evento no trae consumo con qué validarlo."""
     return [
         ("S03_ORG_INEXISTENTE", F.col("org_name").isNull()),   # viene del left join con dim_org
-        ("S01_COSTO_NEGATIVO", F.col("cost_usd_increment") < tolerance),
+        ("S01_COSTO_NEGATIVO_SIN_CONSUMO", F.col("cost_usd_increment") < 0),
         ("S02_UNIT_NO_IMPUTABLE", F.col("value_num").isNotNull() & F.col("unit").isNull()
                                   & ~F.coalesce(F.col("metric").isin(*known_metrics), F.lit(False))),
+    ]
+
+
+def billing_silver_rules(currencies):
+    return [
+        ("S03_ORG_INEXISTENTE", F.col("org_name").isNull()),
+        ("S04_MONEDA_INVALIDA", ~F.coalesce(F.col("currency").isin(*currencies), F.lit(False))
+                                | ~F.coalesce(F.col("exchange_rate_to_usd") > 0, F.lit(False))),
+        ("S05_FECHA_INVALIDA", F.col("billing_month_date").isNull()),
+    ]
+
+
+def tickets_silver_rules():
+    return [
+        ("S03_ORG_INEXISTENTE", F.col("org_name").isNull()),
+        ("S05_FECHA_INVALIDA", F.col("created_date").isNull()),
     ]

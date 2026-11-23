@@ -1,0 +1,38 @@
+run_id,job,zona,dataset,filas_entrada,filas_validas,filas_quarantine,filas_duplicadas,duracion_s,estado,detalle,ts
+20261118T130005-cadbac,bronze_batch,bronze,customers_orgs,80.0,80,0,0,6.89,OK,particion=ingest_date,2026-11-18 13:00:12.380095
+20261118T130005-cadbac,bronze_batch,bronze,users,800.0,800,0,0,1.6,OK,particion=ingest_date,2026-11-18 13:00:13.981756
+20261118T130005-cadbac,bronze_batch,bronze,resources,400.0,400,0,0,1.22,OK,particion=ingest_date,2026-11-18 13:00:15.203004
+20261118T130005-cadbac,bronze_batch,bronze,support_tickets,1000.0,1000,0,0,1.21,OK,particion=ingest_date,2026-11-18 13:00:16.412285
+20261118T130005-cadbac,bronze_batch,bronze,marketing_touches,1500.0,1500,0,0,1.14,OK,particion=ingest_date,2026-11-18 13:00:17.557043
+20261118T130005-cadbac,bronze_batch,bronze,nps_surveys,92.0,92,0,0,1.03,OK,particion=ingest_date,2026-11-18 13:00:18.588892
+20261118T130005-cadbac,bronze_batch,bronze,billing_monthly,240.0,240,0,0,1.26,OK,particion=billing_month,2026-11-18 13:00:19.852912
+20261118T130005-cadbac,bronze_stream,bronze,usage_events,43200.0,43200,0,0,11.27,OK,micro_lotes=4; tarde=0,2026-11-18 13:00:44.759840
+20261118T130005-cadbac,silver_dim_org,silver,dim_org,80.0,80,0,0,0.85,OK,nps_fuera_de_rango=1,2026-11-18 13:00:46.084941
+20261118T130005-cadbac,silver_usage_events,silver,usage_events,43200.0,43196,4,0,10.22,OK,unit_imputada=2038; signo_corregido=212; anomalias=191,2026-11-18 13:00:58.006714
+20261118T130005-cadbac,silver_billing_usd,silver,billing_usd,240.0,240,0,0,1.5,OK,fx_usd_forzado_a_1=160; ajustes=13,2026-11-18 13:01:10.907878
+20261118T130005-cadbac,silver_support_tickets,silver,support_tickets,1000.0,1000,0,0,1.21,OK,csat_fuera_de_rango=40; abiertos=240,2026-11-18 13:01:12.771574
+20261118T130005-cadbac,gold_org_daily_usage,gold,org_daily_usage_by_service,43196.0,11050,0,0,4.67,OK,"entrada=eventos Silver; salida=filas (org, fecha, servicio)",2026-11-18 13:01:20.240633
+20261118T130005-cadbac,gold_top_services_14d,gold,top_services_14d,11050.0,12314,0,0,0.0,OK,vista derivada del mart para la consulta Q2,2026-11-18 13:01:20.409952
+20261118T130005-cadbac,gold_revenue_by_org_month,gold,revenue_by_org_month,,240,0,0,3.01,OK,,2026-11-18 13:01:24.970276
+20261118T130005-cadbac,gold_tickets_by_org_date,gold,tickets_by_org_date,,984,0,0,3.38,OK,,2026-11-18 13:01:25.337454
+20261118T130005-cadbac,gold_tickets_by_severity_date,gold,tickets_by_severity_date,,575,0,0,4.04,OK,,2026-11-18 13:01:25.999004
+20261118T130005-cadbac,gold_genai_tokens_by_org_date,gold,genai_tokens_by_org_date,,1131,0,0,4.53,OK,,2026-11-18 13:01:26.494479
+20261118T130005-cadbac,gold_cost_anomaly_mart,gold,cost_anomaly_mart,,11050,0,0,7.36,OK,,2026-11-18 13:01:29.315949
+20261118T130005-cadbac-reejecucion,bronze_batch,bronze,customers_orgs,80.0,80,0,0,0.74,OK,particion=ingest_date,2026-11-18 13:01:37.837672
+20261118T130005-cadbac-reejecucion,bronze_batch,bronze,users,800.0,800,0,0,0.62,OK,particion=ingest_date,2026-11-18 13:01:38.462394
+20261118T130005-cadbac-reejecucion,bronze_batch,bronze,resources,400.0,400,0,0,0.38,OK,particion=ingest_date,2026-11-18 13:01:38.841522
+20261118T130005-cadbac-reejecucion,bronze_batch,bronze,support_tickets,1000.0,1000,0,0,0.81,OK,particion=ingest_date,2026-11-18 13:01:39.655600
+20261118T130005-cadbac-reejecucion,bronze_batch,bronze,marketing_touches,1500.0,1500,0,0,0.52,OK,particion=ingest_date,2026-11-18 13:01:40.174962
+20261118T130005-cadbac-reejecucion,bronze_batch,bronze,nps_surveys,92.0,92,0,0,0.61,OK,particion=ingest_date,2026-11-18 13:01:40.781274
+20261118T130005-cadbac-reejecucion,bronze_batch,bronze,billing_monthly,240.0,240,0,0,0.56,OK,particion=billing_month,2026-11-18 13:01:41.346004
+20261118T130005-cadbac-reejecucion,silver_dim_org,silver,dim_org,80.0,80,0,0,0.76,OK,nps_fuera_de_rango=1,2026-11-18 13:01:42.174064
+20261118T130005-cadbac-reejecucion,silver_usage_events,silver,usage_events,43200.0,43196,4,0,6.98,OK,unit_imputada=2038; signo_corregido=212; anomalias=191,2026-11-18 13:01:49.572305
+20261118T130005-cadbac-reejecucion,silver_billing_usd,silver,billing_usd,240.0,240,0,0,1.11,OK,fx_usd_forzado_a_1=160; ajustes=13,2026-11-18 13:01:50.821479
+20261118T130005-cadbac-reejecucion,silver_support_tickets,silver,support_tickets,1000.0,1000,0,0,0.85,OK,csat_fuera_de_rango=40; abiertos=240,2026-11-18 13:01:51.791732
+20261118T130005-cadbac-reejecucion,gold_org_daily_usage,gold,org_daily_usage_by_service,43196.0,11050,0,0,4.42,OK,"entrada=eventos Silver; salida=filas (org, fecha, servicio)",2026-11-18 13:01:56.214308
+20261118T130005-cadbac-reejecucion,gold_top_services_14d,gold,top_services_14d,11050.0,12314,0,0,0.0,OK,vista derivada del mart para la consulta Q2,2026-11-18 13:01:56.256902
+20261118T130005-cadbac-reejecucion,gold_revenue_by_org_month,gold,revenue_by_org_month,,240,0,0,2.01,OK,,2026-11-18 13:01:58.270078
+20261118T130005-cadbac-reejecucion,gold_tickets_by_org_date,gold,tickets_by_org_date,,984,0,0,2.36,OK,,2026-11-18 13:01:58.614881
+20261118T130005-cadbac-reejecucion,gold_tickets_by_severity_date,gold,tickets_by_severity_date,,575,0,0,3.18,OK,,2026-11-18 13:01:59.437578
+20261118T130005-cadbac-reejecucion,gold_genai_tokens_by_org_date,gold,genai_tokens_by_org_date,,1131,0,0,3.67,OK,,2026-11-18 13:01:59.926411
+20261118T130005-cadbac-reejecucion,gold_cost_anomaly_mart,gold,cost_anomaly_mart,,11050,0,0,5.94,OK,,2026-11-18 13:02:02.195909

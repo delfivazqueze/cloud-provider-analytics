@@ -13,4 +13,13 @@
 | `02_lake_stats.csv` | 2ª | Particiones, archivos y tamaño por dataset y zona |
 | `02_tests_pytest.txt` | 2ª | Salida de `pytest` (11 tests) |
 | `02_cassandra_q1.csv`, `02_cassandra_q2.csv` | 2ª | Resultados de Q1 y Q2 leídos desde AstraDB |
-| `capturas/` | 1ª y 2ª | Capturas de Colab y de la CQL Console de AstraDB |
+| `final_resumen.json` | Final | Resumen de la corrida final: streaming, conteos por zona, calidad, anomalías, conciliaciones de Gold, facturación, tickets e idempotencia |
+| `final_run_log.csv` | Final | `_meta/run_log` de la corrida y de la re-ejecución |
+| `final_watermark_experimento.csv` | Final | Eventos descartados por tardíos con watermark de 2 y 60 días |
+| `final_quarantine_muestras.csv` | Final | Muestras de quarantine por regla |
+| `final_anomalias_por_grupo.csv` | Final | Mediana, MAD y tasa de anomalías por (servicio, métrica) |
+| `final_gold_*_muestra.csv` | Final | Primeras 200 filas de cada mart Gold |
+| `final_lake_stats.csv` | Final | Particiones, archivos y tamaño por dataset y zona |
+| `final_tests_pytest.txt` | Final | Salida de `pytest` (21 tests) |
+| `final_cassandra_q1.csv` … `final_cassandra_q5.csv` | Final | Resultados de Q1–Q5 leídos desde AstraDB |
+| `capturas/` | 1ª, 2ª y final | Capturas de Colab y de la CQL Console de AstraDB |

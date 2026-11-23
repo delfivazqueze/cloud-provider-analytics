@@ -27,7 +27,7 @@ def cfg(tmp_path):
     return {"paths": paths,
             "streaming": {"max_files_per_trigger": 1, "watermark": "60 days", "trigger": "available_now",
                           "processing_time": "5 minutes"},
-            "quality": {"cost_tolerance_usd": -0.01, "anomaly_threshold": 3.5, "nps_min": -100, "nps_max": 100}}
+            "quality": {"anomaly_threshold": 3.5, "nps_min": -100, "nps_max": 100}}
 
 
 class FakeLog:
