@@ -2,7 +2,8 @@
 
 **Big Data · ITBA · 2C 2026 · Prof. Diego Mosquera** · versión 3.0 · entrega final  
 **Grupo:** Cayetana Peces · Abril Solé · Agustina Edalian · Delfina Vázquez Escati  
-**Repositorio:** https://github.com/delfivazqueze/cloud-provider-analytics
+**Repositorio:** <https://github.com/delfivazqueze/cloud-provider-analytics>  
+**Presentación ejecutiva:** <https://canva.link/dgtmzuypnkwst4o>
 
 > **Resumen.** Plataforma de datos para FinOps, Soporte y Producto de un proveedor de nube. Los 7 CSV entran por batch y los eventos de uso por Structured Streaming a un Data Lake en Parquet (Landing → Bronze → Silver → Gold); los 5 marts de negocio se publican en Cassandra/AstraDB con un modelo query-first que responde las 5 consultas de la consigna. Todo corre de punta a punta en un notebook (`notebooks/03_mvp_final.ipynb`) que llama a funciones de `src/` con configuración externa; las cifras de este documento salen de esa ejecución (`evidence/final_resumen.json`).
 
@@ -20,6 +21,7 @@
 | Repositorio final sin secretos | token en Secrets de Colab; bundle y `config/pipeline.yaml` en `.gitignore` |
 | README Quickstart validado desde un entorno limpio | `README.md` |
 | Documentación técnica y diccionario de datos | este documento · `docs/DICCIONARIO.md` · `DECISIONS.md` |
+| Presentación ejecutiva y video explicativo | presentación en Canva (link arriba) · video entregado junto con este documento |
 
 ## 2. Problema y objetivos medibles
 
